@@ -1,24 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import PersonList from './Components/PersonList';
+import EditPersonel from './Components/EditPersonel';
+import YeniPersonel from './Components/YeniPersonel';
+import { Route, Switch } from 'react-router';
+import 'bootstrap/dist/css/bootstrap.css';
+import ChooseLanguage from './Components/ChooseLanguage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ChooseLanguage />
+      <Switch>
+        <Route exact path="/" component={PersonList} />
+        <Route exact path="/edit/:id" component={EditPersonel} />
+        <Route exact path="/yeniPersonel" component={YeniPersonel} />
+      </Switch>
+    </>
   );
 }
 
