@@ -1,13 +1,14 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { API_URL } from '../config';
 
 export default function PersonList() {
+    const [people, setPeople] = useState()
     useEffect(() => {
         axios.get(`${API_URL}Persons`)
             .then((data) => {
                 console.log(data.data);
-
+                setPeople(data.data);
             });
     }, []);
     return (
@@ -25,15 +26,18 @@ export default function PersonList() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Fatih</td>
-                        <td>Baytar</td>
-                        <td>
-                            <a href="/edit/1" className="btn btn-sm btn-warning">Düzenle</a>
-                            <button type="button" className="btn btn-sm btn-danger">Sil</button>
-                        </td>
-                    </tr>
+                    {
+                        people && people.map(p => <tr key={p.id}>
+                            <td>{p.id}</td>
+                            <td>{p.firstName}</td>
+                            <td>{p.lastName}</td>
+                            <td>
+                                <a href={`/edit/${p.id}`} className="btn btn-sm btn-warning">Düzenle</a>
+                                <button type="button" className="btn btn-sm btn-danger" data-personid={p.id}>Sil</button>
+                            </td>
+                        </tr>)
+                    }
+
                 </tbody>
             </table>
         </div>
