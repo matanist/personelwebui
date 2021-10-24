@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { API_URL } from '../config';
+import { useTranslation } from 'react-i18next';
+import i18n from '../configuration/i18';
 
 export default function PersonList() {
+    const { t, i18n } = useTranslation();
     const [people, setPeople] = useState()
     useEffect(() => {
         axios.get(`${API_URL}Persons`)
@@ -20,7 +23,7 @@ export default function PersonList() {
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Ad</th>
+                        <th>{t('yenipersonel.firstname')}</th>
                         <th>Soyad</th>
                         <th>#</th>
                     </tr>

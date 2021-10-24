@@ -8,19 +8,16 @@ i18n
     .init({
         lng: 'tr',
         backend: {
-            loadPath: 'i18n/translations/{{lng}}.json'
+            loadPath: '/translations/{{lng}}.json'
         },
         fallbackLng: 'tr',
         debug: true,
-        ns: ['translations'],
-        defaultNS: 'translations',
+        
         keySeparator: false,
         interpolation: {
             escapeValue: false,
             formatSeparator: ','
         },
-        react: {
-            wait: true
-        }
+      
     });
     export default i18n;
